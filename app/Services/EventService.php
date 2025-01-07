@@ -23,4 +23,10 @@ class EventService
     {
         return Event::create($params);
     }
+
+    public function updateEvent($params, $idAccount)
+    {
+        return Event::where('id_account', '=', $idAccount)
+            ->update($params);
+    }
 }
