@@ -26,4 +26,8 @@ Route::group(['middleware' => 'token.parse'], function () {
         Route::get('/me', 'AccountController@getAccountInfo');
         Route::patch('/me', 'AccountController@updateAccountInfo');
     });
+
+    Route::group(['prefix' => 'event'], function () {
+        Route::post('/', 'EventController@addEvent');
+    });
 });
