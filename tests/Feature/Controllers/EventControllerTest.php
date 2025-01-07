@@ -68,4 +68,31 @@ class EventControllerTest extends TestCase
         $this->assertEquals($params['description'], $event->refresh()->description);
         $this->assertEquals($params['event_date'], $event->refresh()->event_date);
     }
+
+    public function testDeleteEvent()
+    {
+        $account = Account::find(1);
+
+        $event = [
+            'id_account' => $account->id_account,
+            'title' => 'Test Title',
+            'description' => 'Test Description',
+            'event_date' => '2024-01-01',
+        ];
+        $event = Event::create($event);
+
+        $eventCount = Event::count();
+
+        $this->assertEquals(1, $eventCount);
+
+        $token = $this->getAccessToken($account);
+
+        $response = $this->withToken($token, 'Bearer')
+            ->json('DELETE', "/api/event/$event->id_event");
+
+        $response->assertStatus(200);
+
+        $eventCount = Event::count();
+        $this->assertEquals(0, $eventCount);
+    }
 }

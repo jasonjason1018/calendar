@@ -30,5 +30,6 @@ Route::group(['middleware' => 'token.parse'], function () {
     Route::group(['prefix' => 'event'], function () {
         Route::post('/', 'EventController@addEvent');
         Route::patch('/', 'EventController@updateEvent');
+        Route::delete('/{id_event}', 'EventController@deleteEvent');
     });
 });

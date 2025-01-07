@@ -61,4 +61,11 @@ class EventController extends Controller
 
         return $eventService->updateEvent($updateData, $idAccount);
     }
+
+    public function deleteEvent($idEvent)
+    {
+        $eventService = new EventService();
+
+        return $eventService->deleteEvent($idEvent);
+    }
 }

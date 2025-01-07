@@ -29,4 +29,9 @@ class EventService
         return Event::where('id_account', '=', $idAccount)
             ->update($params);
     }
+
+    public function deleteEvent($idEvent)
+    {
+        return Event::where('id_event', '=', $idEvent)->delete();
+    }
 }
